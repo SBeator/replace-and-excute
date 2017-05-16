@@ -18,8 +18,14 @@ export function activate(context: vscode.ExtensionContext) {
         // The code you place here will be executed every time your command is executed
 
         const config = vscode.workspace.getConfiguration("replace-and-excute");
+        const excuteMethod = config.get('replace-number-and-excute-string') as string; 
+
+        if (!excuteMethod) {
+            vscode.window.showWarningMessage("The settingreplace-and-excute.replace-number-and-excute-string");
+            return;
+        }
+
         const replaceRegex = /^-?([0-9]*\.?[0-9]+)$/;
-        const excuteMethod = config.get('excute-string') as string; 
 
         replaceAndExcute(
             textEditor, 
@@ -80,7 +86,7 @@ function replaceAndExcute(textEditor, textEditorEdit, regexString, excuteFunctio
         return;
     }, this);
     if ((numOcurrences == 0)) {
-        vscode.window.showWarningMessage("There were no values to replace and excute");
+        vscode.window.showWarningMessage("There were no number in the selection");
     }
 };
 

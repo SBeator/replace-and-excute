@@ -15,6 +15,16 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
+        "configuration": {
+            "title": "Replace and excute configuration",
+            "properties": {
+                "replace-and-excute.replace-number-and-excute-string": {
+                    "type": "string",
+                    "default": "${number + 1}",
+                    "description": "The replaced string after replace the number. (increase the number as an example)"
+                }
+            }
+        },
         "commands": [
             {
                 "command": "extension.replace-number-and-excute",
