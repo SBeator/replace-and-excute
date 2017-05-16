@@ -1,7 +1,7 @@
 {
     "name": "replace-and-excute",
     "displayName": "Replace and excute",
-    "description": "A extension to help replace some string and excute some method base on the string",
+    "description": "An extension to help replace some string and excute some method base on the string",
     "version": "0.0.1",
     "publisher": "zengxingxin",
     "engines": {

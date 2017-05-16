@@ -34,7 +34,7 @@ export function activate(context: vscode.ExtensionContext) {
             (match, $1) => {
                 $1 = parseFloat($1);
                 let number = $1;
-                return excuteMethod.replace(/\$\{([^{}]*)\}/, (...args) => eval(args[1]))
+                return excuteMethod.replace(/\$\{([^{}]*)\}/g, (...args) => eval(args[1]))
             }
         );
     });
