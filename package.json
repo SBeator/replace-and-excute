@@ -11,14 +11,22 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:extension.replace-number-and-excute"
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
+        "commands": [
+            {
+                "command": "extension.replace-number-and-excute",
+                "title": "Replace number and excute"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "extension.replace-number-and-excute",
+                "key": "Alt+c"
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
