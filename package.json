@@ -11,7 +11,8 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.replace-number-and-excute"
+        "onCommand:extension.replace-number-and-excute",
+        "onCommand:extension.replace-string-and-excute"
     ],
     "main": "./out/src/extension",
     "contributes": {
@@ -22,6 +23,11 @@
                     "type": "string",
                     "default": "${number + 1}",
                     "description": "The replaced string after replace the number. (increase the number as an example)"
+                },
+                "replace-and-excute.replace-string-and-excute-method": {
+                    "type": "string",
+                    "default": "(x) => x + x",
+                    "description": "The replaced string with the excutable script's result"
                 }
             }
         },
@@ -29,12 +35,20 @@
             {
                 "command": "extension.replace-number-and-excute",
                 "title": "Replace number and excute"
+            },
+            {
+                "command": "extension.replace-string-and-excute",
+                "title": "Replace string and excute"
             }
         ],
         "keybindings": [
             {
                 "command": "extension.replace-number-and-excute",
                 "key": "Alt+c"
+            },
+            {
+                "command": "extension.replace-string-and-excute",
+                "key": "Alt+v"
             }
         ]
     },

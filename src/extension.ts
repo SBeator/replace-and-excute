@@ -21,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
         const excuteMethod = config.get('replace-number-and-excute-string') as string; 
 
         if (!excuteMethod) {
-            vscode.window.showWarningMessage("The settingreplace-and-excute.replace-number-and-excute-string");
+            vscode.window.showWarningMessage("The setting for 'replace-and-excute.replace-number-and-excute-string' does not exist");
             return;
         }
 
@@ -35,6 +35,42 @@ export function activate(context: vscode.ExtensionContext) {
                 $1 = parseFloat($1);
                 let number = $1;
                 return excuteMethod.replace(/\$\{([^{}]*)\}/g, (...args) => eval(args[1]))
+            }
+        );
+    });
+
+    context.subscriptions.push(disposable);
+
+    disposable = vscode.commands.registerTextEditorCommand('extension.replace-string-and-excute', (textEditor, textEditorEdit) => {
+        // The code you place here will be executed every time your command is executed
+
+        const config = vscode.workspace.getConfiguration("replace-and-excute");
+        const excuteMethodString = config.get('replace-string-and-excute-method') as string;
+
+        if (!excuteMethodString) {
+            vscode.window.showWarningMessage("The setting for 'replace-and-excute.replace-string-and-excute-method' does not exist");
+            return;
+        }
+        let excuteMethod;
+        try {
+            excuteMethod = eval(excuteMethodString);
+        } catch (e){
+            vscode.window.showWarningMessage("The setting for 'replace-and-excute.replace-string-and-excute-method' is not a runnable script");
+            return;
+        }
+        if (typeof excuteMethod !== "function") {
+            vscode.window.showWarningMessage("The setting for 'replace-and-excute.replace-string-and-excute-method' is not a method");
+            return;
+        }
+
+        const replaceRegex = /.*/;
+
+        replaceAndExcute(
+            textEditor,
+            textEditorEdit,
+            replaceRegex,
+            (match) => {
+                return excuteMethod(match);
             }
         );
     });
