@@ -5,4 +5,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [0.0.1]
 - Initial release
-- Add replace number and excute command
+- Add `Replace number and excute` command
+
+## [0.0.2]
+- Add `Replace string and excute` command
